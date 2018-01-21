@@ -55,6 +55,12 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
+      tabPanel("First",
+               h4("With $10,000 investment, the total return over six years:")
+      ),
+      # show a table with the net income after screening
+      tableOutput("Net"),
+      # show plots after screening
       plotOutput("distPlot")
     )
   )

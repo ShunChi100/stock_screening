@@ -7,14 +7,19 @@
 #    http://shiny.rstudio.com/
 #
 
+
 library(shiny)
+library(dplyr)
 library(ggplot2)
 library(gridExtra)
 
 
 
+
+
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+shinyServer(function(input, output, stock) {
+  
   stock <- read.csv("./stock_data_clean.csv")
   # data filtering, remove outliers
   stock <- filter(stock, stock$ROE_5Y<0.5, 
@@ -25,6 +30,28 @@ shinyServer(function(input, output) {
                   stock$PEratio < 40, 
                   stock$Profit_Margin_5Y >-0.2, 
                   stock$Profit_Margin_5Y < 0.4)
+
+  Net_ave <- 10000*(1+mean(stock$Median_Q_Growth))^6
+  
+  Net <- data.frame(Screened = 0, Average = Net_ave)
+  rownames(Net) <- "Net_Asset"
+  
+  
+  output$Net <- renderTable({
+    stock <- filter(stock, stock$ROE_5Y<input$ROE[2], 
+                    stock$ROE_5Y> input$ROE[1], 
+                    stock$DEratio_5Y>input$DEratio[1], 
+                    stock$DEratio_5Y<input$DEratio[2], 
+                    stock$PEratio > input$PERatio[1], 
+                    stock$PEratio < input$PERatio[2], 
+                    stock$Profit_Margin_5Y >input$Profit_Margin[1], 
+                    stock$Profit_Margin_5Y < input$Profit_Margin[2])
+    Net_new <- 10000*(1+mean(stock$Median_Q_Growth))^6
+    
+    Net$Screened = Net_new
+    
+    Net
+    })
   
   output$distPlot <- renderPlot({
     
@@ -36,6 +63,7 @@ shinyServer(function(input, output) {
                     stock$PEratio < input$PERatio[2], 
                     stock$Profit_Margin_5Y >input$Profit_Margin[1], 
                     stock$Profit_Margin_5Y < input$Profit_Margin[2])
+    
     
     if (input$graphtype == "Scatter"){
       # choose the x axis scale from the input
