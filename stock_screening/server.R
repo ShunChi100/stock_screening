@@ -28,6 +28,15 @@ shinyServer(function(input, output) {
   
   output$distPlot <- renderPlot({
     
+    stock <- filter(stock, stock$ROE_5Y<input$ROE[2], 
+                    stock$ROE_5Y> input$ROE[1], 
+                    stock$DEratio_5Y>input$DEratio[1], 
+                    stock$DEratio_5Y<input$DEratio[2], 
+                    stock$PEratio > input$PERatio[1], 
+                    stock$PEratio < input$PERatio[2], 
+                    stock$Profit_Margin_5Y >input$Profit_Margin[1], 
+                    stock$Profit_Margin_5Y < input$Profit_Margin[2])
+    
     if (input$graphtype == "Scatter"){
       # choose the x axis scale from the input
       if (input$regression == "Linear") {

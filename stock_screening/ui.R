@@ -19,11 +19,7 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
+
       # radio Buttons for choosing the type of regression
       radioButtons("regression", "Regression Type (Scatter plot only)",
                    choices = c("Linear", "Non-linear"),
@@ -31,10 +27,31 @@ shinyUI(fluidPage(
       # radio Buttons for choosing the type of bar plots
       radioButtons("graphtype", "Graph Type",
                    choices = c("Scatter", "Histogram"),
-                   selected = "Scatter")
+                   selected = "Scatter"),
+      # slider bars for four key parameters
+      sliderInput("ROE",
+                  "Return on Equity:",
+                  min = -0.25,
+                  max = 0.5,
+                  value = c(-0.25, 0.5)),
+      sliderInput("DEratio",
+                  "Debt to Equity Ratio:",
+                  min = -0.25,
+                  max = 3,
+                  value = c(-0.25, 3)),
+      sliderInput("Profit_Margin",
+                  "Profit Margin:",
+                  min = -0.2,
+                  max = 0.4,
+                  value = c(-0.2, 0.4)),
+      sliderInput("PERatio",
+                  "Price to Earning Ratio:",
+                  min = 0,
+                  max = 40,
+                  value = c(0, 40))
     ),
     
-    
+
     
     # Show a plot of the generated distribution
     mainPanel(
