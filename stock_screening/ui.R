@@ -24,10 +24,14 @@ shinyUI(fluidPage(
                   min = 1,
                   max = 50,
                   value = 30),
-      # radio Buttons for choosing the scale of x axis (GDP per capita)
-      radioButtons("regression", "Regression Type",
+      # radio Buttons for choosing the type of regression
+      radioButtons("regression", "Regression Type (Scatter plot only)",
                    choices = c("Linear", "Non-linear"),
-                   selected = "Linear")
+                   selected = "Linear"),
+      # radio Buttons for choosing the type of bar plots
+      radioButtons("graphtype", "Graph Type",
+                   choices = c("Scatter", "Histogram"),
+                   selected = "Scatter")
     ),
     
     
