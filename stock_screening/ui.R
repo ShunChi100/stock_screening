@@ -9,25 +9,32 @@
 
 library(shiny)
 
+
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Value Investing Exploration"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
+      sliderInput("bins",
+                  "Number of bins:",
+                  min = 1,
+                  max = 50,
+                  value = 30),
+      # radio Buttons for choosing the scale of x axis (GDP per capita)
+      radioButtons("regression", "Regression Type",
+                   choices = c("Linear", "Non-linear"),
+                   selected = "Linear")
     ),
+    
+    
     
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("distPlot")
+      plotOutput("distPlot")
     )
   )
 ))

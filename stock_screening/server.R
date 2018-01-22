@@ -8,19 +8,66 @@
 #
 
 library(shiny)
+library(ggplot2)
+library(gridExtra)
+
+
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
+  stock <- read.csv("./stock_data_clean.csv")
+  print(input)
   output$distPlot <- renderPlot({
     
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
     
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    # choose the x axis scale from the input
+    if (input$regression == "Linear") {
+      scatters <- scatter_plot(stock, "lm")
+    }else{
+      scatters <- scatter_plot(stock, "auto")
+    }
+    #scatters <- scatter_plot(stock, "auto")
     
-  })
+    grid.arrange(scatters[[1]],scatters[[2]],scatters[[3]],scatters[[4]], ncol=2)
+    
+    
+  }, height = 800, width = 800)
   
 })
+
+
+scatter_plot <- function(stock, fitmethod = "lm"){
+  g2 =  stock %>%
+    ggplot(aes(x = ROE_5Y, y = Median_Q_Growth))+
+    geom_point(alpha = 0.1)+
+    geom_smooth(method = fitmethod)+
+    scale_x_continuous("Return on Equity (past 5 years mean)",limits = c(-0.25 ,0.5))+
+    scale_y_continuous("Price growth rate",limits = c(-0.5, 0.5))+
+    ggtitle("Price Growth v.s. Return on Equity")
+  
+  g3 =  stock %>%
+    ggplot(aes(x = DEratio_5Y, y = Median_Q_Growth))+
+    geom_point(alpha = 0.1)+
+    geom_smooth(method = fitmethod)+
+    scale_x_continuous("Debt to equity ratio (past 5 years mean)",limits = c(-0.25 , 3))+
+    scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
+    ggtitle("Price Growth v.s. Debt to Equity Ratio")
+  
+  g4 =  stock %>%
+    ggplot(aes(x = Profit_Margin_5Y, y = Median_Q_Growth))+
+    geom_point(alpha = 0.1)+
+    geom_smooth(method = fitmethod)+
+    scale_x_continuous("Profit margin (past 5 years mean)",limits = c(-0.2 , 0.4))+
+    scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
+    ggtitle("Price Growth v.s. Profit Margin")
+  
+  g5 = stock %>%
+    ggplot(aes(x = PEratio, y = Median_Q_Growth))+
+    geom_point(alpha = 0.1)+
+    geom_smooth(method = fitmethod)+
+    scale_x_continuous("Price to earning ratio",limits = c(0 , 40))+
+    scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
+    ggtitle("Price Growth v.s. Price to Earning Ratio")
+  
+  return(list(g2, g3, g4, g5))
+}
