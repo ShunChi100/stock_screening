@@ -26,7 +26,7 @@ shinyUI(fluidPage(
                    selected = "Linear"),
       # radio Buttons for choosing the type of bar plots
       radioButtons("graphtype", "Graph Type",
-                   choices = c("Scatter", "Histogram"),
+                   choices = c("Scatter", "Density"),
                    selected = "Scatter"),
       # slider bars for four key parameters
       sliderInput("ROE",
