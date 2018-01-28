@@ -33,22 +33,22 @@ shinyUI(fluidPage(
                   "Return on Equity:",
                   min = -0.25,
                   max = 0.5,
-                  value = c(-0.25, 0.5)),
+                  value = c(-0.2, 0.4)),
       sliderInput("DEratio",
                   "Debt to Equity Ratio:",
                   min = -0.25,
                   max = 3,
-                  value = c(-0.25, 3)),
+                  value = c(-0, 2.5)),
       sliderInput("Profit_Margin",
                   "Profit Margin:",
                   min = -0.2,
                   max = 0.4,
-                  value = c(-0.2, 0.4)),
+                  value = c(-0.1, 0.5)),
       sliderInput("PERatio",
                   "Price to Earning Ratio:",
                   min = 0,
                   max = 40,
-                  value = c(0, 40))
+                  value = c(20, 36))
     ),
     
 
