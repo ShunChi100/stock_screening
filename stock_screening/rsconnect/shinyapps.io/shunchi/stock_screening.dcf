@@ -5,8 +5,8 @@ account: shunchi
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 259045
-bundleId: 1196964
+bundleId: 1196974
 url: https://shunchi.shinyapps.io/stock_screening/
-when: 1517181384.55226
+when: 1517182086.40658
 asMultiple: FALSE
 asStatic: FALSE
