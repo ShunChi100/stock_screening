@@ -141,9 +141,9 @@ bar_plot <- function(stock,stock_orig){
   g1 =  stock %>%
     ggplot(aes(x = Median_Q_Growth*100))+
     geom_density(data = stock_orig, aes(x = Median_Q_Growth*100), color = "black",size = 1)+
-    geom_density(color = "darkblue", fill = "purple", alpha = 0.3)+
+    geom_density(color = "darkblue", fill = "darkblue", alpha = 0.5)+
     scale_x_continuous("Yearly Growth Percentage",limits = c(-50 ,50))+
-    scale_y_continuous("Counts")+
+    scale_y_continuous("Density")+
     ggtitle("Stock Price Yearly Growth Percentage")+
     theme(axis.text=element_text(size=12),
           axis.title=element_text(size=14), 
@@ -154,7 +154,7 @@ bar_plot <- function(stock,stock_orig){
     geom_density(data = stock_orig, aes(x = ROE_5Y), color = "black",size = 1)+
     geom_density(color = "darkblue", fill = "darkgreen", alpha = 0.3)+
     scale_x_continuous("Return on Equity (past 5 years mean)",limits = c(-0.25 ,0.5))+
-    scale_y_continuous("Counts")+
+    scale_y_continuous("Density")+
     ggtitle("Return on Equity")+
     theme(axis.text=element_text(size=12),
           axis.title=element_text(size=14), 
@@ -165,7 +165,7 @@ bar_plot <- function(stock,stock_orig){
     geom_density(data = stock_orig, aes(x = DEratio_5Y), color = "black",size = 1)+
     geom_density(color = "darkblue", fill = "darkgreen", alpha = 0.3)+
     scale_x_continuous("Debt to equity ratio (past 5 years mean)",limits = c(-0.25 , 3))+
-    scale_y_continuous("Counts")+
+    scale_y_continuous("Density")+
     ggtitle("Debt to Equity Ratio")+
     theme(axis.text=element_text(size=12),
           axis.title=element_text(size=14), 
@@ -176,7 +176,7 @@ bar_plot <- function(stock,stock_orig){
     geom_density(data = stock_orig, aes(x = Profit_Margin_5Y), color = "black",size = 1)+
     geom_density(color = "darkblue", fill = "darkgreen", alpha = 0.3)+
     scale_x_continuous("Profit margin (past 5 years mean)",limits = c(-0.2 , 0.4))+
-    scale_y_continuous("Counts")+
+    scale_y_continuous("Density")+
     ggtitle("Profit Margin")+
     theme(axis.text=element_text(size=12),
           axis.title=element_text(size=14), 
@@ -187,7 +187,7 @@ bar_plot <- function(stock,stock_orig){
     geom_density(data = stock_orig, aes(x = PEratio), color = "black",size = 1)+
     geom_density(color = "darkblue", fill = "darkgreen", alpha = 0.3)+
     scale_x_continuous("Price to earning ratio",limits = c(0 , 40))+
-    scale_y_continuous("Counts")+
+    scale_y_continuous("Density")+
     ggtitle("Price to Earning Ratio")+
     theme(axis.text=element_text(size=12),
           axis.title=element_text(size=14), 
