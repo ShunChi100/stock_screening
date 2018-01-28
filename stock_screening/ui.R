@@ -55,11 +55,12 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
-      tabPanel("First",
-               h4("With $10,000 investment, the total return over six years:")
-      ),
+      h4("App Description"),
+      p("This shinyApp allows users to explore the relation between four key parameters of companies and their annual stock price growth rate. You can tune the four key parameters on the left side and visulize their change of correlations with stock price growth rate."),
+      p("------------------------------------------------"),
+      div(h4("With $10,000 investment, the total return over six years:"), style = "color:blue"),
       # show a table with the net income after screening
-      tableOutput("Net"),
+      div(tableOutput("Net"), style = "font-size:200%"),
       # show plots after screening
       plotOutput("distPlot")
     )

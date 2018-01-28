@@ -14,9 +14,6 @@ library(ggplot2)
 library(gridExtra)
 
 
-
-
-
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, stock) {
   
@@ -83,7 +80,7 @@ shinyServer(function(input, output, stock) {
     }
     
     
-  }, height = 800)
+  }, height = 700)
   
 })
 
