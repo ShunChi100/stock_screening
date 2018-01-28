@@ -88,7 +88,7 @@ shinyServer(function(input, output, stock) {
 scatter_plot <- function(stock, fitmethod = "lm"){
   g2 =  stock %>%
     ggplot(aes(x = ROE_5Y, y = Median_Q_Growth))+
-    geom_point(alpha = 0.1)+
+    geom_point(alpha = 0.2, color = "darkgreen")+
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Return on Equity (past 5 years mean)",limits = c(-0.25 ,0.5))+
     scale_y_continuous("Price growth rate",limits = c(-0.5, 0.5))+
@@ -96,7 +96,7 @@ scatter_plot <- function(stock, fitmethod = "lm"){
   
   g3 =  stock %>%
     ggplot(aes(x = DEratio_5Y, y = Median_Q_Growth))+
-    geom_point(alpha = 0.1)+
+    geom_point(alpha = 0.2, color = "darkgreen")+
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Debt to equity ratio (past 5 years mean)",limits = c(-0.25 , 3))+
     scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
@@ -104,7 +104,7 @@ scatter_plot <- function(stock, fitmethod = "lm"){
   
   g4 =  stock %>%
     ggplot(aes(x = Profit_Margin_5Y, y = Median_Q_Growth))+
-    geom_point(alpha = 0.1)+
+    geom_point(alpha = 0.2, color = "darkgreen")+
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Profit margin (past 5 years mean)",limits = c(-0.2 , 0.4))+
     scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
@@ -112,7 +112,7 @@ scatter_plot <- function(stock, fitmethod = "lm"){
   
   g5 = stock %>%
     ggplot(aes(x = PEratio, y = Median_Q_Growth))+
-    geom_point(alpha = 0.1)+
+    geom_point(alpha = 0.2, color = "darkgreen")+
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Price to earning ratio",limits = c(0 , 40))+
     scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
@@ -160,3 +160,4 @@ bar_plot <- function(stock){
   
   return(list(g2, g3, g4, g5, g1))
 }
+
