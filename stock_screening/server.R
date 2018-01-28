@@ -85,6 +85,7 @@ shinyServer(function(input, output, stock) {
 })
 
 
+
 scatter_plot <- function(stock, fitmethod = "lm"){
   g2 =  stock %>%
     ggplot(aes(x = ROE_5Y, y = Median_Q_Growth))+
@@ -92,7 +93,10 @@ scatter_plot <- function(stock, fitmethod = "lm"){
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Return on Equity (past 5 years mean)",limits = c(-0.25 ,0.5))+
     scale_y_continuous("Price growth rate",limits = c(-0.5, 0.5))+
-    ggtitle("Price Growth v.s. Return on Equity")
+    ggtitle("Price Growth v.s. Return on Equity")+
+    theme(axis.text=element_text(size=12),
+          axis.title=element_text(size=14), 
+          plot.title = element_text(size=18,face="bold"))
   
   g3 =  stock %>%
     ggplot(aes(x = DEratio_5Y, y = Median_Q_Growth))+
@@ -100,7 +104,10 @@ scatter_plot <- function(stock, fitmethod = "lm"){
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Debt to equity ratio (past 5 years mean)",limits = c(-0.25 , 3))+
     scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
-    ggtitle("Price Growth v.s. Debt to Equity Ratio")
+    ggtitle("Price Growth v.s. Debt to Equity Ratio")+
+    theme(axis.text=element_text(size=12),
+          axis.title=element_text(size=14), 
+          plot.title = element_text(size=18,face="bold"))
   
   g4 =  stock %>%
     ggplot(aes(x = Profit_Margin_5Y, y = Median_Q_Growth))+
@@ -108,7 +115,10 @@ scatter_plot <- function(stock, fitmethod = "lm"){
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Profit margin (past 5 years mean)",limits = c(-0.2 , 0.4))+
     scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
-    ggtitle("Price Growth v.s. Profit Margin")
+    ggtitle("Price Growth v.s. Profit Margin")+
+    theme(axis.text=element_text(size=12),
+          axis.title=element_text(size=14), 
+          plot.title = element_text(size=18,face="bold"))
   
   g5 = stock %>%
     ggplot(aes(x = PEratio, y = Median_Q_Growth))+
@@ -116,7 +126,10 @@ scatter_plot <- function(stock, fitmethod = "lm"){
     geom_smooth(method = fitmethod)+
     scale_x_continuous("Price to earning ratio",limits = c(0 , 40))+
     scale_y_continuous("Price growth rate", limits = c(-0.5, 0.5))+
-    ggtitle("Price Growth v.s. Price to Earning Ratio")
+    ggtitle("Price Growth v.s. Price to Earning Ratio")+
+    theme(axis.text=element_text(size=12),
+          axis.title=element_text(size=14), 
+          plot.title = element_text(size=18,face="bold"))
   
   return(list(g2, g3, g4, g5))
 }
