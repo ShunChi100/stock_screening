@@ -8,10 +8,6 @@ This is a interactive shinyApp that allows people to explore the four key parame
 
 App link: https://shunchi.shinyapps.io/stock_screening/
 
-Release V2.0 (milestone 3): https://github.com/ShunChi100/stock_screening/tree/V2.0
-
-Release V1.0 (milestone 2): https://github.com/ShunChi100/stock_screening/tree/V1.0
-
 The four key parameters that can quantify the intrinsic value of a company are
 * Return on Equity (ROE),
 * Debt to Equity Ratio (DEratio),
